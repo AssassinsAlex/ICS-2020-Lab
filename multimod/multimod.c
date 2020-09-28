@@ -12,7 +12,7 @@ static void cal_mpow_2(uint64_t b, uint64_t m, uint64_t b_pow_2[64]){
 
 
 uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
-  uint64_t result = 0; 
+    uint64_t result = 0; 
     uint64_t b_pow_2[64];
 
     cal_mpow_2(b, m, b_pow_2);
