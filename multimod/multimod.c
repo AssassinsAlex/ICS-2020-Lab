@@ -2,7 +2,7 @@
 
 
 
-static uint64_t mod_add_u(x, y, m){
+static uint64_t mod_add_u(uint64_t x, uint64_t y, uint64_t m){
     if(x + y < x)
         return mod(mod( x+y+1,m) + mod(0xFFFFFFFFFFFFFFFF,m),m);
     else
