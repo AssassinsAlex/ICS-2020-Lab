@@ -1,12 +1,12 @@
 #include <stdint.h>
 
-#define MOD_ADD_U(x, y, m) ((x)+ (y) < (x)) ? (((x+y+1)%(m) + (0xFFFFFFFFFFFFFFFF)%(m))%(m)) : (((x)+(y))%(m)) 
+
 
 static uint64_t mod_add_u(x, y, m){
     if(x + y < x)
-        return ((x+y+1)%m + 0xFFFFFFFFFFFFFFFF%m)%m;
+        return mod(mod( x+y+1,m) + mod(0xFFFFFFFFFFFFFFFF,m),m);
     else
-        return (x+y)%m;
+        return mod(x+y,m);
     
 }
 
@@ -33,7 +33,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 
     for(int i = 0; i < 64; i++){
         uint8_t flag = (a >> i) & 1;
-        result = MOD_ADD_U(result, flag?b_pow_2[i]:0, m);
+        result = mod_add_u(result, flag?b_pow_2[i]:0, m);
     }
     return result;
 }
