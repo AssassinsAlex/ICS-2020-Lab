@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-#define MOD_ADD_U(x, y, m) ((x)+ (y) < (x)) ? (((x+y+1)%(m) + (~0UL)%(m))%(m)) : (((x)+(y))%(m)) 
+#define MOD_ADD_U(x, y, m) ((x)+ (y) < (x)) ? (((x+y+1)%(m) + (0xFFFFFFFFFFFFFFFF)%(m))%(m)) : (((x)+(y))%(m)) 
 
 
 static void cal_mpow_2(uint64_t b, uint64_t m, uint64_t b_pow_2[64]){
