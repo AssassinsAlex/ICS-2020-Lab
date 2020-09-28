@@ -20,7 +20,7 @@ static uint64_t mod_add_u(uint64_t x, uint64_t y, uint64_t m){
 static void cal_mpow_2(uint64_t b, uint64_t m, uint64_t b_pow_2[64]){
     b_pow_2[0] = b;
     for(int i = 1; i < 64; i++){
-        b_pow_2[i] = MOD_ADD_U(b_pow_2[i-1], b_pow_2[i-1], m);
+        b_pow_2[i] = mod_add_u(b_pow_2[i-1], b_pow_2[i-1], m);
     }   
 }
 
