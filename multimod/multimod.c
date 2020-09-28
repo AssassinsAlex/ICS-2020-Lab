@@ -1,6 +1,11 @@
 #include <stdint.h>
 
-
+static uint64_t mod(uint64_t a, uint64_t m ){
+     uint64_t r = a;
+     while(r-m > a)
+        r = r-m;
+    return r;
+}
 
 static uint64_t mod_add_u(uint64_t x, uint64_t y, uint64_t m){
     if(x + y < x)
@@ -10,12 +15,7 @@ static uint64_t mod_add_u(uint64_t x, uint64_t y, uint64_t m){
     
 }
 
-static uint64_t mod(uint64_t a, uint64_t m ){
-     uint64_t r = a;
-     while(r-m > a)
-        r = r-m;
-    return r;
-}
+
 
 static void cal_mpow_2(uint64_t b, uint64_t m, uint64_t b_pow_2[64]){
     b_pow_2[0] = b;
