@@ -19,7 +19,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 
     for(int i = 0; i < 64; i++){
         uint8_t flag = (a >> i) & 1;
-        result = MOD_ADD_U(result, flag*b_pow_2[i], m);
+        result = MOD_ADD_U(result, flag ? b_pow_2[i] : 0, m);
     }
     return result;
 }
