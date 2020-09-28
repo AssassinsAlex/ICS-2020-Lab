@@ -2,6 +2,20 @@
 
 #define MOD_ADD_U(x, y, m) ((x)+ (y) < (x)) ? (((x+y+1)%(m) + (0xFFFFFFFFFFFFFFFF)%(m))%(m)) : (((x)+(y))%(m)) 
 
+static uint64_t mod_add_u(x, y, m){
+    if(x + y < x)
+        return ((x+y+1)%m + 0xFFFFFFFFFFFFFFFF%m)%m;
+    else
+        return (x+y)%m;
+    
+}
+
+static uint64_t mod(uint64_t a, uint64_t m ){
+     uint64_t r = a;
+     while(r-m > a)
+        r = r-m;
+    return r;
+}
 
 static void cal_mpow_2(uint64_t b, uint64_t m, uint64_t b_pow_2[64]){
     b_pow_2[0] = b;
@@ -19,10 +33,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
 
     for(int i = 0; i < 64; i++){
         uint8_t flag = (a >> i) & 1;
-        if(flag == 1)
-            result = MOD_ADD_U(result, b_pow_2[i], m);
-        else
-            result = MOD_ADD_U(result, 0, m);
+        result = MOD_ADD_U(result, flag?b_pow_2[i]:0, m);
     }
     return result;
 }
