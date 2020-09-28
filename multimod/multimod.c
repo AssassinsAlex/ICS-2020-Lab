@@ -1,10 +1,9 @@
 #include <stdint.h>
 
 static uint64_t mod(uint64_t a, uint64_t m ){
-    uint64_t r = a;
-    while(r-m < a)
-        r = r-m;
-    return r;
+    while(a >= m)
+        a = a - m;
+    return a;
 }
 
 static uint64_t mod_add_u(uint64_t x, uint64_t y, uint64_t m){
