@@ -7,7 +7,7 @@ static uint64_t m_pow_2[64];
 static uint64_t mod(uint64_t a, uint64_t m ){
     int i  = 63;
     while(i >= 0 && a >= m){
-        if(a >= m_pow_2[i])
+        if(a >= m_pow_2[i] && m_pow_2[i])
             a = a-m_pow_2[i];
         else
             i--;
@@ -41,7 +41,7 @@ uint64_t multimod(uint64_t a, uint64_t b, uint64_t m) {
             m_pow_2[i] = m_pow_2[i-1] + m_pow_2[i-1];
         }else
         {
-            m_pow_2[i] = UINT64_MAX;
+            m_pow_2[i] = 0;
         }   
     }
 
