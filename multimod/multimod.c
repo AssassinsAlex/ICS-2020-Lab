@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-static m_pow_2[64];
+static uint64_t m_pow_2[64];
 
 
 
