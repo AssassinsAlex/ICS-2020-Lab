@@ -56,7 +56,7 @@ int     asm_setjmp(asm_jmp_buf env){
         "movq $0, %%rax;"
         "movq %%rbx, (%%rdi);"
         "movq %%rbp, 0x8(%%rdi);"
-        "movq %%rsp, 0x10(%%rdi);"
+        "lea 0x8(%%rsp), 0x10(%%rdi);"
         "movq %%r12, 0x18(%%rdi);"
         "movq %%r13, 0x20(%%rdi);"
         "movq %%r14, 0x28(%%rdi);"
