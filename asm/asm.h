@@ -3,9 +3,6 @@
 
 // TODO: replace with your definition
 
-typedef struct jmp_buf{
-    uint64_t gpr[8];
-}jmp_buf[1];
 #define asm_jmp_buf jmp_buf
 
 int64_t asm_add(int64_t a, int64_t b);
