@@ -11,7 +11,7 @@ static int  primes[N];
 int *sieve(int n) {
   assert(n + 1 < N);
   memset(vis, 0, sizeof(vis));
-  cnt = 0;
+  int cnt = 0;
 
   for (int i = 2; i <= n; i++) {
     if(!vis[i]) primes[cnt++] = i;
