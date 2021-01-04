@@ -14,7 +14,7 @@ int *sieve(int n) {
   int cnt = 0;
   for (int i = 2; i <= n; i++) {
     if(!vis[i]) primes[cnt++] = i;
-    for(int j = 0; j < cnt && (long long) i * primes[j] <= n; j++)
+    for(int j = 0; j < cnt && 1ll * i * primes[j] <= n; j++)
     { 
   
       vis[i*primes[j]] = 1;
