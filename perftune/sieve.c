@@ -17,7 +17,7 @@ int *sieve(int n) {
   primes[cnt++] = 5;
   primes[cnt++] = 7;
   for (int i = 2; i <= n; i++) {
-    if(i%2 == 0 || i%3 == 0 || i%5 == 0 || i % 5 == 0) continue;
+    if(i%2 == 0 || i%3 == 0 || i%5 == 0 || i % 7 == 0) continue;
     if(!vis[i]) primes[cnt++] = i;
     for(int j = 0; j < cnt && i * primes[j] <= n; j++)
     { 
