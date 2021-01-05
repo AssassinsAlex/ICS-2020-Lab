@@ -14,12 +14,10 @@ int *sieve(int n) {
   int cnt = 0;
   primes[cnt++] = 2;
   primes[cnt++] = 3;
-  primes[cnt++] = 5;
-  primes[cnt++] = 7;
   for (int i = 2; i <= n; i++) {
-    if(i%2 == 0 || i%3 == 0 || i%5 == 0 || i % 7 == 0) continue;
+    if(i%2 == 0 || i%3 == 0 ) continue;
     if(!vis[i]) primes[cnt++] = i;
-    for(int j = 0; j < cnt && i * primes[j] <= n; j++)
+    for(int j = 1; j < cnt && i * primes[j] <= n; j++)
     { 
       vis[i*primes[j]] = 1;
       if(i % primes[j] == 0) break;
