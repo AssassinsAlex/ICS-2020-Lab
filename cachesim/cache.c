@@ -55,6 +55,7 @@ static void allocate(uintptr_t addr, uint32_t *row_addr){
   cur->valid = true;
   cur->dirty_bit = false;
   cur->tag = dst_tag;
+  *row_addr = ram_row;
 }
 
 uint32_t cache_read(uintptr_t addr) {
