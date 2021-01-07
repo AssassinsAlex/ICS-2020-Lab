@@ -17,8 +17,8 @@ typedef struct _cache_block
   uint32_t tag;
   uint8_t data[BLOCK_SIZE];
 } cache_block;
-cache_block cache[MEM_SIZE/BLOCK_SIZE];
-//static cache_block* cache;
+//cache_block cache[MEM_SIZE/BLOCK_SIZE];
+static cache_block* cache;
 static uint32_t total_num;
 static uint32_t group_num;
 static uint32_t row_num;
@@ -81,9 +81,9 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
 void init_cache(int total_size_width, int associativity_width) {
   srand(time(NULL));
   row_num = 1 << associativity_width;
-  total_num = total_size_width / BLOCK_SIZE;
+  total_num = 1 << (total_size_width - BLOCK_WIDTH) ;
   group_num = total_num / row_num;
-  //cache = (cache_block *) malloc(sizeof(cache_block)*total_num);
+  cache = (cache_block *) malloc(sizeof(cache_block)*total_num);
   memset(cache, 0, total_num);
 
 }
