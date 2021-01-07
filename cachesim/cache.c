@@ -49,9 +49,9 @@ static void allocate(uintptr_t addr, uint32_t *row_addr){
   uint32_t ram_row = rand() % row_num;
   cache_block* cur = cache + block_addr * row_num + ram_row;
   if(cur->valid && cur->dirty_bit){
-    mem_write(cur->tag * block_addr, (uint8_t *)&(cur->dirty_bit));
+    mem_write(cur->tag * group_num+ block_addr, (uint8_t *)&(cur->data));
   }
-  mem_read(cur->tag * block_addr, (uint8_t *)&(cur->data));
+  mem_read(dst_tag * block_addr, (uint8_t *)&(cur->data));
   cur->valid = true;
   cur->dirty_bit = false;
   cur->tag = dst_tag;
