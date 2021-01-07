@@ -83,7 +83,7 @@ void init_cache(int total_size_width, int associativity_width) {
   row_num = 1 << associativity_width;
   total_num = total_size_width / BLOCK_SIZE;
   group_num = total_num / row_num;
-  cache = (cache_block *) malloc(sizeof(cache_block)*total_num);
+  //cache = (cache_block *) malloc(sizeof(cache_block)*total_num);
   memset(cache, 0, total_num);
 
 }
