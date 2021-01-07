@@ -73,7 +73,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   if(!check_hit(addr, &row_addr)){
     allocate(addr, &row_addr);
   }
-  cache_block *cur =  cache + addr / BLOCK_SIZE % group_num + row_addr;
+  cache_block *cur =  cache + addr / BLOCK_SIZE % group_num * row_num + row_addr;
   uint32_t *p =(void *)(cur->data)+ (addr & ~0x3) % BLOCK_SIZE;
   *p = (*p & ~wmask) | (data & wmask);
   cur->dirty_bit = true;
