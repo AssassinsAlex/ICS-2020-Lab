@@ -59,7 +59,7 @@ static void allocate(uintptr_t addr, uint32_t *row_addr){
 
 uint32_t cache_read(uintptr_t addr) {
   uint32_t row_addr = 0;
-  if(check_hit(addr, &row_addr)){
+  if(!check_hit(addr, &row_addr)){
     allocate(addr, &row_addr);
   }
   cache_block *cur =  cache + (addr / BLOCK_SIZE) % group_num * row_num + row_addr;
@@ -69,7 +69,7 @@ uint32_t cache_read(uintptr_t addr) {
 
 void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
   uint32_t row_addr = 0;
-  if(check_hit(addr, &row_addr)){
+  if(!check_hit(addr, &row_addr)){
     allocate(addr, &row_addr);
   }
   cache_block *cur =  cache + addr / BLOCK_SIZE % group_num + row_addr;
