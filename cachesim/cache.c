@@ -17,8 +17,8 @@ typedef struct _cache_block
   uint32_t tag;
   uint8_t data[BLOCK_SIZE];
 } cache_block;
-
-static cache_block* cache;
+cache_block cache[MEM_SIZE/BLOCK_SIZE];
+//static cache_block* cache;
 static uint32_t total_num;
 static uint32_t group_num;
 static uint32_t row_num;
@@ -62,7 +62,7 @@ uint32_t cache_read(uintptr_t addr) {
   if(check_hit(addr, &row_addr)){
     allocate(addr, &row_addr);
   }
-  cache_block *cur =  cache + addr / BLOCK_SIZE % group_num + row_addr;
+  cache_block *cur =  cache + (addr / BLOCK_SIZE) % group_num + row_addr;
   uint32_t *p =(void *)(cur->data)+ (addr & ~0x3) % BLOCK_SIZE;
   return *p;
 }
@@ -80,7 +80,7 @@ void cache_write(uintptr_t addr, uint32_t data, uint32_t wmask) {
 
 void init_cache(int total_size_width, int associativity_width) {
   srand(time(NULL));
-  row_num = associativity_width;
+  row_num = 1 << associativity_width;
   total_num = total_size_width / BLOCK_SIZE;
   group_num = total_num / row_num;
   cache = (cache_block *) malloc(sizeof(cache_block)*total_num);
