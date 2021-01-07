@@ -62,7 +62,7 @@ uint32_t cache_read(uintptr_t addr) {
   if(check_hit(addr, &row_addr)){
     allocate(addr, &row_addr);
   }
-  cache_block *cur =  cache + (addr / BLOCK_SIZE) % group_num + row_addr;
+  cache_block *cur =  cache + (addr / BLOCK_SIZE) % group_num * row_num + row_addr;
   uint32_t *p =(void *)(cur->data)+ (addr & ~0x3) % BLOCK_SIZE;
   return *p;
 }
