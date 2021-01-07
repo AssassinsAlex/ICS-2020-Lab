@@ -51,7 +51,7 @@ static void allocate(uintptr_t addr, uint32_t *row_addr){
   if(cur->valid && cur->dirty_bit){
     mem_write(cur->tag * group_num + block_addr, (uint8_t *)&(cur->data));
   }
-  mem_read(dst_tag * block_addr, (uint8_t *)&(cur->data));
+  mem_read(addr, (uint8_t *)&(cur->data));
   cur->valid = true;
   cur->dirty_bit = false;
   cur->tag = dst_tag;
